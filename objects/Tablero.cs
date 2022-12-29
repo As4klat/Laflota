@@ -73,6 +73,40 @@ namespace flota_consola.objects
 
         private void AddBarcosToTablero(int modo)
         {
+            for (int i = 0; i < 10; i++)
+            {
+                Barco barco = barcos[i];
+                //Crear posicion inicial del barco
+                int x = 0;
+                int y = 0;
+
+                if (modo==0)
+                {
+                    Random r = new Random();
+                    while (barco.Posicion == null)
+                    {
+                        x = r.Next(0, 10);
+                        y = r.Next(0, 10);
+
+                        int[] posicionInicial = { x, y };
+                        barco.Posicion = posicionInicial;
+
+                        ComprobarPosiciones(barco);
+                    }
+                }
+                else { PreguntarPosicion(barco); }
+
+                // Colocar barco
+                MarcarTablero(barco, true);
+                if (modo != 0)
+                {
+                    if (Pantalla.PintarclQry("\n" + MostrarEstado() + "\n" + "¿Quieres modificar el barco anterior? [Y/N]:") == "y")
+                    {
+                        MarcarTablero(barco, false);
+                        i--;
+                    }
+                }
+            }
             foreach (Barco barco in barcos)
             {
                 //Crear posicion inicial del barco
@@ -93,37 +127,10 @@ namespace flota_consola.objects
                         ComprobarPosiciones(barco);
                     }
                 }
-                else { PreguntarPosicion(barco); }                
+                else { PreguntarPosicion(barco); }
 
                 // Colocar barco
-                x = barco.Posicion[0];
-                y = barco.Posicion[1];
-                int contTamBarco = 0;
-                for (int i = 0; i < 10; i++)
-                {
-                    for (int j = 0; j < 10; j++)
-                    {
-                        if (barco.Orientacion == 'X')
-                        {
-                            if (i == x && j == y && contTamBarco < barco.Espacios)
-                            {
-                                mar[i, j] = barco.Espacios;
-                                y++;
-                                contTamBarco++;
-                            }
-                        }
-                        else if (barco.Orientacion == 'Y')
-                        {
-                            if (i == x && j == y && contTamBarco < barco.Espacios)
-                            {
-                                mar[i, j] = barco.Espacios;
-                                x++;
-                                contTamBarco++;
-                            }
-                        }
-                        if (contTamBarco == barco.Espacios) { j = 10; i = 10; }
-                    }
-                }
+                MarcarTablero(barco, true);
             }
         }
 
@@ -195,8 +202,40 @@ namespace flota_consola.objects
             return n;
         }
 
+        public void MarcarTablero(Barco barco,bool insertar)
+        {
+            int x = barco.Posicion[0];
+            int y = barco.Posicion[1];
+            int contTamBarco = 0;
+            for (int i = 0; i < 10; i++)
+            {
+                for (int j = 0; j < 10; j++)
+                {
+                    if (barco.Orientacion == 'X')
+                    {
+                        if (i == x && j == y && contTamBarco < barco.Espacios)
+                        {
+                            mar[i, j] = IIf(insertar, barco.Espacios,0);
+                            y++;
+                            contTamBarco++;
+                        }
+                    }
+                    else if (barco.Orientacion == 'Y')
+                    {
+                        if (i == x && j == y && contTamBarco < barco.Espacios)
+                        {
+                            mar[i, j] = IIf(insertar, barco.Espacios, 0);
+                            x++;
+                            contTamBarco++;
+                        }
+                    }
+                    if (contTamBarco == barco.Espacios) { j = 10; i = 10; }
+                }
+            }
+        }
+
         //Metodos de acciones de juego
-        public void MarcarCasilla()
+        public void Disparar()
         {
         }
 
@@ -212,9 +251,9 @@ namespace flota_consola.objects
             {
                 for (int j = -1; j < 10; j++)
                 {
-                    if (i == -1 && j == -1) { panel += " "; }
+                    if (i == -1 && j == -1) { panel += "     "; }
                     else if (i == -1 && j != -1) { panel += x++; }
-                    else if (j == -1 && i != -1) { panel += y++; }
+                    else if (j == -1 && i != -1) { panel += "    " + y++; }
                     else if (i != -1 && j != -1) { if (mar[i, j] != 0) { panel += tipoBarco[mar[i, j] - 1]; } else { panel += "~"; } }
                     
                     panel += " ";
@@ -236,9 +275,9 @@ namespace flota_consola.objects
             {
                 for (int j = -1; j < 10; j++)
                 {
-                    if (i == -1 && j == -1) { panel += " "; }
+                    if (i == -1 && j == -1) { panel += "     "; }
                     else if (i == -1 && j != -1) { panel += x++; }
-                    else if (j == -1 && i != -1) { panel += y++; }
+                    else if (j == -1 && i != -1) { panel += "    " + y++; }
                     else if (i != -1 && j != -1) { panel += "~"; }
 
                     panel += " ";
