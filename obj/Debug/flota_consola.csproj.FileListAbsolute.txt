@@ -1,0 +1,16 @@
+C:\Users\USER\source\repos\flota_consola\bin\Debug\flota_consola.exe.config
+C:\Users\USER\source\repos\flota_consola\bin\Debug\flota_consola.exe
+C:\Users\USER\source\repos\flota_consola\bin\Debug\flota_consola.pdb
+C:\Users\USER\source\repos\flota_consola\obj\Debug\flota_consola.csproj.AssemblyReference.cache
+C:\Users\USER\source\repos\flota_consola\obj\Debug\flota_consola.csproj.SuggestedBindingRedirects.cache
+C:\Users\USER\source\repos\flota_consola\obj\Debug\flota_consola.csproj.CoreCompileInputs.cache
+C:\Users\USER\source\repos\flota_consola\obj\Debug\flota_consola.exe
+C:\Users\USER\source\repos\flota_consola\obj\Debug\flota_consola.pdb
+C:\Users\Alejandro\Desktop\Movidas mias\flota_consola\bin\Debug\flota_consola.exe.config
+C:\Users\Alejandro\Desktop\Movidas mias\flota_consola\bin\Debug\flota_consola.exe
+C:\Users\Alejandro\Desktop\Movidas mias\flota_consola\bin\Debug\flota_consola.pdb
+C:\Users\Alejandro\Desktop\Movidas mias\flota_consola\obj\Debug\flota_consola.csproj.AssemblyReference.cache
+C:\Users\Alejandro\Desktop\Movidas mias\flota_consola\obj\Debug\flota_consola.csproj.SuggestedBindingRedirects.cache
+C:\Users\Alejandro\Desktop\Movidas mias\flota_consola\obj\Debug\flota_consola.csproj.CoreCompileInputs.cache
+C:\Users\Alejandro\Desktop\Movidas mias\flota_consola\obj\Debug\flota_consola.exe
+C:\Users\Alejandro\Desktop\Movidas mias\flota_consola\obj\Debug\flota_consola.pdb
